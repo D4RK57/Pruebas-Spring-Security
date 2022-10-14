@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <title>Iniciar Sesión</title>
+</head>
+<body>
+<!--Spring Security proporciona un filtro que intercepta esa solicitud y autentica al usuario.
+ Si el usuario no puede autenticarse, la página se redirige a /login?error y su página muestra
+ el mensaje de error correspondiente. Al cerrar sesión con éxito, su solicitud se envía
+ a /login?logout y su página muestra el mensaje de éxito correspondiente.-->
+
+<div th:if="${param.error}">
+  Nombre de usuario y contraseña incorrectos.
+</div>
+<div th:if="${param.logout}">
+  Has cerrado sesión.
+</div>
+<form th:action="@{/iniciar-sesion}" method="post">
+  <div><label> Nombre de Usuario : <input type="text" name="username"/> </label></div>
+  <div><label> Contraseña: <input type="password" name="password"/> </label></div>
+  <div><input type="submit" value="Iniciar Sesión"/></div>
+</form>
+</body>
+</html>
