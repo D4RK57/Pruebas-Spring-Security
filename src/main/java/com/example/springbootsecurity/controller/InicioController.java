@@ -21,4 +21,9 @@ public class InicioController {
         return "iniciar-sesion";
     }
 
+    @GetMapping("/admin")
+    public String admin() {
+        return "admin";
+    }
+
 }
