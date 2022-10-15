@@ -16,14 +16,11 @@ public class InicioController {
         return "saludo";
     }
 
-    @GetMapping("/iniciar-sesion")
-    public String login() {
-        return "iniciar-sesion";
-    }
-
     @GetMapping("/admin")
     public String admin() {
         return "admin";
     }
+
+
 
 }

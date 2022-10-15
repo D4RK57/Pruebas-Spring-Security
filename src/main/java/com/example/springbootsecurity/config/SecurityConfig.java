@@ -3,7 +3,6 @@ package com.example.springbootsecurity.config;
 import com.example.springbootsecurity.service.JpaUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -37,7 +36,7 @@ public class SecurityConfig {
                 .authorizeRequests(auth -> auth
                         // Se añaden excepciones, donde se podrá ingresar sin autenticación
                         .antMatchers("/h2-console/**").permitAll()
-                        .mvcMatchers("/", "/inicio").permitAll()
+                        .mvcMatchers("/", "/inicio", "/registro").permitAll()
                         .anyRequest().authenticated())
                 // Así spring security identifica como obtener los datos de los usuarios
                 .userDetailsService(jpaUserDetailsService)
