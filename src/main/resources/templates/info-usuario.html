@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--Pruebas obtener atributos usuario en sesión-->
+    <span sec:authorize="isAuthenticated()">
+        | Usuario Logeado: <span sec:authentication="name"></span> |
+        Roles: <span sec:authentication="principal.authorities"></span> |
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Cerrar Sesión"/>
+        </form>
+    </span>
+
+    <div sec:authorize="hasRole('ROLE_ADMIN')">Hola ADMIN!!!</div>
+
+</body>
+</html>

@@ -32,7 +32,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/registro")
-    public String guardarUsuario(@Valid Usuario usuario, BindingResult result, SessionStatus status) {
+    public String guardarUsuario(@Valid Usuario usuario, SessionStatus status) {
 
         //Pasar nueva contraseña cifrada
         usuario.setClave(usuarioService.cifrarClave(usuario.getClave()));
@@ -42,6 +42,11 @@ public class UsuarioController {
         usuarioService.guardar(usuario);
         status.setComplete();
         return "redirect:/saludo";
+    }
+
+    @GetMapping("/info-usuario")
+    public String userInfo() {
+        return "info-usuario";
     }
 
 }

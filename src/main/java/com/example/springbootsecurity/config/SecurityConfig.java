@@ -30,24 +30,21 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                //Al parecer esta función sólo se usa en H2
-                .csrf(csrf -> csrf.ignoringAntMatchers("/h2-console/**"))
                 // No permite solicitudes a menos que el usuario esté registrado
-                .authorizeRequests(auth -> auth
+                .authorizeRequests(consulta -> consulta
                         // Se añaden excepciones, donde se podrá ingresar sin autenticación
-                        .antMatchers("/h2-console/**").permitAll()
                         .mvcMatchers("/", "/inicio", "/registro").permitAll()
                         .anyRequest().authenticated())
                 // Así spring security identifica como obtener los datos de los usuarios
                 .userDetailsService(jpaUserDetailsService)
                 .headers(headers -> headers.frameOptions().sameOrigin())
                 // Autenticación básica HTTP, puede ser así (logeo básico) o un form de inicio de sesión
-                .formLogin((form) -> form
+                .formLogin((formulario) -> formulario
                         // permite acceso a todos
                         .loginPage("/iniciar-sesion")
                         .permitAll()
                 )
-                .logout((logout) -> logout.permitAll())
+                .logout((cerrarSesion) -> cerrarSesion.permitAll())
                 .build();
     }
 

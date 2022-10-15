@@ -16,11 +16,6 @@ public class InicioController {
         return "saludo";
     }
 
-    @GetMapping("/admin")
-    public String admin() {
-        return "admin";
-    }
-
 
 
 }
